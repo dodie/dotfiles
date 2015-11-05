@@ -1,4 +1,128 @@
+"Vundle Plugins
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'dodie/vim-monokai-refined'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdcommenter' "  [num]<leader>ci to toggle comment
+Plugin 'jceb/vim-hier'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'terryma/vim-expand-region'
+Plugin 'Shougo/neocomplete.vim'
+"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'dscleaver/sbt-quickfix'
+source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
+"Plugin 'marijnh/tern_for_vim'
+call vundle#end()
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+
+
+"Syntax highlighting
 syntax on
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+"Theme
+colorscheme Monokai-Refined
+
+"Enable plugins and indention rules based on filetype detection
+filetype plugin indent on
+
+"Show line nubers
+set nu
+
+"Enable mouse support
+set mouse=a
+
+"Cursor line indicator
+set cursorline
+
+"Use OS clipboard
+set clipboard=unnamedplus
+
+augroup Highlights
+    autocmd!
+
+    "Highlight trailing whitespace
+    autocmd WinEnter,VimEnter * :silent! call matchadd('ExtraWhitespace', '\s\+$', -1)
+
+    "Highlight occurrences of the word under the cursor
+    autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+    "Highlight TODO and FIXME
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
+augroup END
+
+"Short timeout
+set ttimeout
+set ttimeoutlen=50
+
+"Always show statusbar
+set laststatus=2
+
+"Always enable rainbow parenthesis with custom colors for dark colorscheme
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['lightblue',    'SeaGreen3'],
+    \ ['lightgray',    'DarkOrchid3'],
+    \ ['lightgreen',   'firebrick3'],
+    \ ['lightcyan',    'RoyalBlue3'],
+    \ ['lightred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['white',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['blue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+"Filetype assoc.
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+"Ignore Maven's target directory with CtrlP
+set wildignore+=*/target/*
+
+"Shortcuts for NERDTree
+silent! nmap <C-p> :NERDTreeToggle<CR>
+silent! map <F2> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
+let g:NERDTreeToggle="<F2>"
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
+
+"Change the mapleader from \ to ,
+let mapleader=","
+
+"Shortcut for Spelling
+nn <F7> :setlocal spell! spell?<CR>
+" zg   - mark the word under the cursor as a good
+" zw   - mark the word under the cursor as a wrong
+" z=   - find suggestions for a wrong word
+
+"Shortcut for paste mode toggle
+set pastetoggle=<F5>
+
+"Mappings for vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" TODO: :W-re is mentsen. Vagy valami egyszerű combo, hogy ne kelljen shiftet
+" nyomni mert megorulok tole, pl <ld>w
