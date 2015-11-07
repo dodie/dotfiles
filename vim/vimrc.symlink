@@ -17,8 +17,8 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'dscleaver/sbt-quickfix'
-source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
+"Plugin 'dscleaver/sbt-quickfix'
+"source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
 "Plugin 'marijnh/tern_for_vim'
 call vundle#end()
 " :PluginList       - lists configured plugins
