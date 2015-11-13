@@ -1,4 +1,4 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
         , borderColor = "black"
         , bgColor = "black"
         , fgColor = "grey"
