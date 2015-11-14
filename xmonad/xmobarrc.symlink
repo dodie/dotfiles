@@ -8,9 +8,11 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
                         , Run Swap [] 10
                         , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run Com "/home/dodi/.dotfiles/xmonad/wireless.sh" [] "wifi" 30
+                        , Run Com "/home/dodi/.dotfiles/xmonad/getvolume.sh" [] "volume" 2
                         , Run StdinReader
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | Battery: %battery% }{<fc=#ee9a00>%date%</fc> "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | Battery: %battery% }{<fc=#ee9a00>%date%</fc> | %wifi% | %volume% "
         }
