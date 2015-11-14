@@ -1,8 +1,8 @@
 #!/bin/sh
 volume=`amixer -D pulse sget Master | awk -F"[][]" '/%/ { print $2 }' | head -n 1 | sed -e 's/%//g'`
-volumeclass=`expr $volume / 10`
+bars=`expr $volume / 10`
 
-case $volumeclass in
+case $bars in
   0)  bar='[----------]' ;;
   1)  bar='[>---------]' ;;
   2)  bar='[>>--------]' ;;

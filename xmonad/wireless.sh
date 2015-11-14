@@ -1,7 +1,7 @@
 #!/bin/sh
 
 iwconfig wlan0 2>&1 | grep -q no\ wireless\ extensions\. && {
-  echo wired
+  echo Wired
   exit 0
 }
 
@@ -21,7 +21,7 @@ case $bars in
   8)  bar='[////////--]' ;;
   9)  bar='[/////////-]' ;;
   10) bar='[//////////]' ;;
-  *)  bar='Not connected.' ;;
+  *)  bar='Not connected' ;;
 esac
 
 echo $essid $bar
