@@ -1,0 +1,37 @@
+#!/bin/sh
+
+echo ""
+echo "Number of available processing units:"
+echo "-------------------------------------"
+nproc
+
+echo ""
+echo ""
+echo "CPU architecture information:"
+echo "-----------------------------"
+lscpu
+
+echo ""
+echo ""
+echo "Memory information:"
+echo "-------------------"
+lshw -short -C memory
+
+
+echo ""
+echo ""
+echo "Disk information:"
+echo "-----------------"
+lsblk
+rotational=`cat /sys/block/sda/queue/rotational`
+case $rotational in
+  0)  is_ssd='YES' ;;
+  1)  is_ssd='NO' ;;
+  *)  is_ssd='???' ;;
+esac
+echo "Is SSD?:" $is_ssd
+
+echo ""
+echo ""
+
+
