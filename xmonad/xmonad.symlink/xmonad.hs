@@ -17,6 +17,7 @@ main = do
                        avoidStruts $
                        smartSpacing 4 $
                        Tall 1 (3/100) (1/2)
+                       ||| Mirror (Tall 1 (3/100) (1/2))
                        ||| Full
         , logHook = do fadeInactiveLogHook 0.9
                        dynamicLogWithPP $ xmobarPP
