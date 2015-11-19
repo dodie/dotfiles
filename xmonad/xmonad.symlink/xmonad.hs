@@ -13,7 +13,11 @@ main = do
 
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = noBorders $ avoidStruts $ smartSpacing 4 $ Tall 1 (3/100) (1/2)
+        , layoutHook = noBorders $
+                       avoidStruts $
+                       smartSpacing 4 $
+                       Tall 1 (3/100) (1/2)
+                       ||| Full
         , logHook = do fadeInactiveLogHook 0.9
                        dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
