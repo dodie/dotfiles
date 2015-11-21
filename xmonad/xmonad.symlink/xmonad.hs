@@ -10,6 +10,8 @@ import System.IO
 
 main = do
     xmproc <- spawnPipe "xmobar"
+    spawn "xscreensaver -no-splash"
+    spawn "xcompmgr"
 
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> manageHook defaultConfig
@@ -25,6 +27,7 @@ main = do
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        , startupHook = myStartupHook
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
@@ -33,3 +36,6 @@ main = do
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawn "scrot")
         ]
+
+myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.jpg"
+                >> spawn "xsetroot -cursor_name left_ptr"

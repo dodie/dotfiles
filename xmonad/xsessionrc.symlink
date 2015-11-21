@@ -1,18 +1,5 @@
-xrdb -merge .Xresources
-#stalonetray &
-xscreensaver -no-splash &
-
 # Set background image with feh
 feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.jpg &
 
-# composition manager for fades
-xcompmgr &
-
 # get rid of the default X shaped cursor
 xsetroot -cursor_name left_ptr
-
-#if [ -x /usr/bin/nm-applet ] ; then
-   #nm-applet --sm-disable &
-#fi
-
-#exec xmonad
