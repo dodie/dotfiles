@@ -1,6 +1,6 @@
 Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
         , borderColor = "black"
-        , bgColor = "black"
+        , bgColor = "#2c2c2c"
         , fgColor = "grey"
         , position = TopW L 100
         , commands = [ Run Battery ["-t","<left>% / <timeleft>","-L","50","-H","75","-h","green","-n","yell","-l","red"] 10
