@@ -1,0 +1,9 @@
+#!/bin/sh
+# for each file in current directory, print date of last
+# commit (not including renames)
+
+for filename in *
+do
+  git log --follow --name-status --format="%ai  $filename" "$filename" |
+    sed 'h;N;N;/\nR/d;g;q'
+done | sort | cat
