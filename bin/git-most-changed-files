@@ -1,16 +1,21 @@
 #!/bin/sh
 
 # find current files with most commits, including renames
-# TODO: see how slow it is
+# TODO: add docs: files in the current subdir
+# TODO: add man/help
+# TODO: add option for quick version
 # TODO: print file size?
-
+echo $1
 git ls-files |
 while read filename
 do
-  #printf . >&2
   set $(git log --follow --oneline "$filename" | wc)
   printf '%s\t%s\n' $1 "$filename"
 done | sort -nr | cat
 
 # Faster version that does not tracks renames, and prints deleted files from history.
 #git log --pretty=format: --name-only | grep -v "^$" | sort | uniq -c | sort -rg | head -10
+
+#TODO: add support for since:
+#git log --since="1 week ago"
+
