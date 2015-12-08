@@ -7,6 +7,7 @@ import XMonad.Layout.Spacing
 import XMonad.Hooks.FadeInactive
 import XMonad.Layout.NoBorders
 import System.IO
+import XMonad.Hooks.SetWMName
 
 main = do
     xmproc <- spawnPipe "xmobar"
@@ -15,13 +16,13 @@ main = do
 
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = noBorders $
+        , layoutHook = smartBorders $
                        avoidStruts $
-                       smartSpacing 4 $
+                       --smartSpacing 4 $
                        Tall 1 (3/100) (1/2)
                        ||| Mirror (Tall 1 (3/100) (1/2))
                        ||| Full
-        , logHook = do fadeInactiveLogHook 0.9
+        , logHook = do --fadeInactiveLogHook 0.9
                        dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 50
@@ -39,3 +40,4 @@ main = do
 
 myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.jpg"
                 >> spawn "xsetroot -cursor_name left_ptr"
+                >> setWMName "LG3D"
