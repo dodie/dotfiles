@@ -37,6 +37,6 @@ main = do
         , ((0, xK_Print), spawn "ksnapshot")
         ]
 
-myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.jpg"
+myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
                 >> spawn "xsetroot -cursor_name left_ptr"
                 >> setWMName "LG3D"
