@@ -34,8 +34,7 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
-        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-        , ((0, xK_Print), spawn "scrot")
+        , ((0, xK_Print), spawn "ksnapshot")
         ]
 
 myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.jpg"
