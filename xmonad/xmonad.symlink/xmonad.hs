@@ -39,4 +39,4 @@ main = do
 
 myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
                 >> spawn "xsetroot -cursor_name left_ptr"
-              --  >> setWMName "LG3D" -- Java hack
+                >> setWMName "LG3D" -- Java hack
