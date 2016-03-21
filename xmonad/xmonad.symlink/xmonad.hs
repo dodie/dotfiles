@@ -9,6 +9,11 @@ import XMonad.Layout.NoBorders
 import System.IO
 import XMonad.Hooks.SetWMName
 
+import qualified Data.Map as M         -- haskell modules
+import qualified XMonad.StackSet as W  -- xmonad core
+import XMonad.Actions.FloatKeys        -- actions (keyResizeWindow)
+import XMonad.Actions.FloatSnap        -- actions (snapMove)
+
 main = do
     xmproc <- spawnPipe "xmobar"
     spawn "xscreensaver -no-splash"
@@ -29,14 +34,35 @@ main = do
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , startupHook = myStartupHook
+	, mouseBindings = myMouseBindings
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
         , ((0, xK_Print), spawn "ksnapshot")
-        ]
+	-- mod-arrows and mod-shift-arrow to move and resize floating windows
+	, ((mod4Mask, xK_Left ), withFocused (keysMoveWindow (-50,0)))
+	, ((mod4Mask, xK_Right), withFocused (keysMoveWindow (50,0)))
+	, ((mod4Mask, xK_Up   ), withFocused (keysMoveWindow (0,-50)))
+	, ((mod4Mask, xK_Down ), withFocused (keysMoveWindow (0,50)))
+	, ((mod4Mask .|. shiftMask, xK_Left ), withFocused (keysResizeWindow (-50,0) (0,0)))
+	, ((mod4Mask .|. shiftMask, xK_Right), withFocused (keysResizeWindow (50,0) (0,0)))
+	, ((mod4Mask .|. shiftMask, xK_Up   ), withFocused (keysResizeWindow (0,-50) (0,0)))
+	, ((mod4Mask .|. shiftMask, xK_Down ), withFocused (keysResizeWindow (0,50) (0,0)))
+	]
 
 myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
                 >> spawn "xsetroot -cursor_name left_ptr"
                 >> setWMName "LG3D" -- Java hack
+
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
+    -- mod-button1, Set the window to floating mode and move by dragging
+    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster))
+    -- mod-button2, Raise the window to the top of the stack
+    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+    -- mod-button3, Set the window to floating mode and resize by dragging
+    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster))
+    ]
