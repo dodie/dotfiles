@@ -41,15 +41,6 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
         , ((0, xK_Print), spawn "ksnapshot")
-	-- mod-arrows and mod-shift-arrow to move and resize floating windows
-	, ((mod4Mask, xK_Left ), withFocused (keysMoveWindow (-50,0)))
-	, ((mod4Mask, xK_Right), withFocused (keysMoveWindow (50,0)))
-	, ((mod4Mask, xK_Up   ), withFocused (keysMoveWindow (0,-50)))
-	, ((mod4Mask, xK_Down ), withFocused (keysMoveWindow (0,50)))
-	, ((mod4Mask .|. shiftMask, xK_Left ), withFocused (keysResizeWindow (-50,0) (0,0)))
-	, ((mod4Mask .|. shiftMask, xK_Right), withFocused (keysResizeWindow (50,0) (0,0)))
-	, ((mod4Mask .|. shiftMask, xK_Up   ), withFocused (keysResizeWindow (0,-50) (0,0)))
-	, ((mod4Mask .|. shiftMask, xK_Down ), withFocused (keysResizeWindow (0,50) (0,0)))
 	]
 
 myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
