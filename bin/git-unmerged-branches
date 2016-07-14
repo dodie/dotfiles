@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# List unmerged branches.
+
+if [ $# -eq 0 ]
+  then
+    echo "No target branch supplied." >&2
+    echo "Example: git-unmerged-branches master" >&2
+  else
+    for branch in `git branch -r --no-merged origin/$1 | grep -v HEAD`
+    do
+      echo -e `git show --format="%ci|||%cr|||%cn|||" $branch | head -n 1` $branch
+    done | sort -r | column -t -s $'|||'
+fi

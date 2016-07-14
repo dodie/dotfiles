@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# List already merged branches.
+# The target branch doesn't appear in the output.
+
+if [ $# -eq 0 ]
+  then
+    echo "No target branch supplied." >&2
+    echo "Example: git-merged-branches master" >&2
+  else
+    git branch -r --merged origin/$1 | grep -v '^\s*origin/'$1'$'
+fi
+
