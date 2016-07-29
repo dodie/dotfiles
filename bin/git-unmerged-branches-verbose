@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# List unmerged branches, print commits.
+
+git-unmerged-branches $1 | awk '{ print $0; system("git cherry -v origin/'$1' "$NF) }'
+
