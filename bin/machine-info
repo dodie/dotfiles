@@ -11,6 +11,8 @@ echo "CPU architecture information:"
 echo "-----------------------------"
 lscpu
 
+cat /proc/cpuinfo | grep "model name" | head -n 1
+
 echo ""
 echo ""
 echo "Memory information:"
