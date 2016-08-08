@@ -43,16 +43,19 @@ main = do
         , ((0, xK_Print), spawn "ksnapshot")
 	]
 
-myStartupHook = spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
-                >> spawn "xsetroot -cursor_name left_ptr"
---                >> setWMName "LG3D" -- Java hack
+myStartupHook = do
+                spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
+                spawn "xsetroot -cursor_name left_ptr"
+--                setWMName "LG3D" -- Java hack
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
                                        >> windows W.shiftMaster))
-    -- mod-button2, Raise the window to the top of the stack
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+
+    -- mod-button2, Sink the window back to the grid.
+    , ((modm, button2), (\w -> withFocused $ windows . W.sink))
+
     -- mod-button3, Set the window to floating mode and resize by dragging
     , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
                                        >> windows W.shiftMaster))
