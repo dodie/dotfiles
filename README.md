@@ -27,4 +27,5 @@ There's a few special files in the hierarchy.
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
+- **topic/\*.configlink**: Similar to .symlinks, but these files will be linked into $HOME/.config
 
