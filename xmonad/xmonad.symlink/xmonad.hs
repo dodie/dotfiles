@@ -38,6 +38,7 @@ main = do
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
+        , ((mod4Mask .|. shiftMask, xK_d), spawn "gsimplecal")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
         , ((0, xK_Print), spawn "ksnapshot")

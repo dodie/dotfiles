@@ -15,5 +15,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% } %date% <fc=#ffffff>%time%</fc> { %cpu% | %battery% | <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> "
+        , template = "%StdinReader% } <action=`gsimplecal`>%date%</action> <fc=#ffffff>%time%</fc> { %cpu% | %battery% | <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> "
         }
