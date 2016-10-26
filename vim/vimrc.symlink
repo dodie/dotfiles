@@ -90,6 +90,10 @@ silent! map <F3> :NERDTreeFind<CR>
 let g:NERDTreeToggle="<F2>"
 let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeGlyphReadOnly = 'RO'
 
 "Change the mapleader from \ to ,
 let mapleader=","
