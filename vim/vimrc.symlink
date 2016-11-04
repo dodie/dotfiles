@@ -115,5 +115,5 @@ cnoreabbrev W w
 cnoreabbrev Q q
 
 " use J to merge lines, and K to split them
-nnoremap K i<CR><Esc>
+nnoremap K i<CR><Esc>k:.,.s/\s\+$//e<CR>j:.,.s/^\s\+//e<CR>
 
