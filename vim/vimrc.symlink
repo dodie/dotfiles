@@ -113,3 +113,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 cnoreabbrev W w
 cnoreabbrev Q q
+
+" use J to merge lines, and K to split them
+nnoremap K i<CR><Esc>
+
