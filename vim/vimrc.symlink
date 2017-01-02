@@ -1,36 +1,42 @@
 "Vundle Plugins
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'dodie/vim-monokai-refined'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdcommenter' "  [num]<leader>ci to toggle comment
-Plugin 'jceb/vim-hier'
-Plugin 'terryma/vim-expand-region'
-Plugin 'Shougo/neocomplete.vim'
-"Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'luochen1990/rainbow'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'jiangmiao/auto-pairs'
-
-"Plugin 'dscleaver/sbt-quickfix'
-"source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
-"Plugin 'marijnh/tern_for_vim'
-call vundle#end()
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Plugin manager
+Plugin 'VundleVim/Vundle.vim'
+" Theme
+Plugin 'dodie/vim-monokai-refined'
+" Git
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+" Quickfix
+Plugin 'jceb/vim-hier'
+" File navigation
+Plugin 'kien/ctrlp.vim'            " <c-p> to quickly find files by path and name
+Plugin 'scrooloose/nerdtree'       " <F2> to toggle tree, <F3> to find current file in tree
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'majutsushi/tagbar'
+" Source editing
+Plugin 'easymotion/vim-easymotion' " <leader><leader>w to quickly jump to a word
+Plugin 'scrooloose/nerdcommenter'  " [num]<leader>ci to toggle comment
+Plugin 'terryma/vim-expand-region' " v to expand, <c-v> to shrink visual selection
+Plugin 'luochen1990/rainbow'
+Plugin 'jiangmiao/auto-pairs'
+" Autocomplete
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/neocomplete.vim'
+" Scala
+Plugin 'derekwyatt/vim-scala'
+"Plugin 'dscleaver/sbt-quickfix'   " source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
+" Javascript
+"Plugin 'marijnh/tern_for_vim'
+call vundle#end()
 
 "Syntax highlighting
 syntax on
@@ -44,14 +50,43 @@ filetype plugin indent on
 "Show line nubers
 set nu
 
-"Enable mouse support
-set mouse=a
+"Change the mapleader from \ to ,
+let mapleader=","
 
 "Cursor line indicator
 set cursorline
 
-"Use OS clipboard
-set clipboard=unnamedplus
+"Short timeout
+set ttimeout
+set ttimeoutlen=50
+
+
+" Some copy-paste niceness. :)
+" - F5 to toggle paste mode.
+" - F11 to hide side bar to ease copy-pasting from Vim.
+"   This is the reason I'm not enabling mouse support.
+" - F12 to cat the whole file. This is convenient if I
+"   need to copy paste multiple pages.
+silent! map <F11> :set invnumber <bar> :GitGutterToggle<CR>
+"set mouse=a "Enable mouse support
+silent! map <F12> :!clear<CR>:exe '!cat %'<CR>
+set pastetoggle=<F5>
+
+"Shortcut for Spelling
+nn <F7> :setlocal spell! spell?<CR>
+" zg   - mark the word under the cursor as a good
+" zw   - mark the word under the cursor as a wrong
+" z=   - find suggestions for a wrong word
+
+"use J to merge lines and K to split them
+nnoremap K i<CR><Esc>k:.,.s/\s\+$//e<CR>j:.,.s/^\s\+//e<CR>
+
+"Filetype associations
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+"Let some uppercase commands work as their lowercase counterparts
+cnoreabbrev W w
+cnoreabbrev Q q
 
 augroup Highlights
     autocmd!
@@ -66,26 +101,15 @@ augroup Highlights
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
 augroup END
 
-"Short timeout
-set ttimeout
-set ttimeoutlen=50
-
 "Always show statusbar
 set laststatus=2
 
 "Enable rainbow parentheses
 let g:rainbow_active = 1
 
-"Filetype assoc.
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-"Ignore Maven's target directory with CtrlP
-set wildignore+=*/target/*
-
-"Shortcuts for NERDTree
+"NERDTree configuration
 silent! nmap <C-p> :NERDTreeToggle<CR>
 silent! map <F2> :NERDTreeTabsToggle<CR>
-"silent! map <F2> :NERDTreeToggle<CR>
 silent! map <F3> :NERDTreeFind<CR>
 let g:NERDTreeToggle="<F2>"
 let g:NERDTreeMapActivateNode="<F3>"
@@ -95,25 +119,33 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeGlyphReadOnly = 'RO'
 
-"Change the mapleader from \ to ,
-let mapleader=","
-
-"Shortcut for Spelling
-nn <F7> :setlocal spell! spell?<CR>
-" zg   - mark the word under the cursor as a good
-" zw   - mark the word under the cursor as a wrong
-" z=   - find suggestions for a wrong word
-
-"Shortcut for paste mode toggle
-set pastetoggle=<F5>
-
 "Mappings for vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-cnoreabbrev W w
-cnoreabbrev Q q
 
-" use J to merge lines, and K to split them
-nnoremap K i<CR><Esc>k:.,.s/\s\+$//e<CR>j:.,.s/^\s\+//e<CR>
+"Use the Silver Searcher for grepping and and CtrlPing.
+"This searcher is fast and respects the .gitignore file.
+" * to find word under cursor in current file
+" <leader>* to find word under cursor in the project
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+nnoremap <Leader>* :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+
+"ctags
+"to search for tags         : ctrl+o
+"to jump to tag under cursor: ctrl+g
+"when it hits multiple tags : ctrl+h for next tag, ctrl+f for previous
+"to jump up on tag stack    : ctrl+t
+set tags=./.git/tags-dep,tags-dep,./.git/tags,tags
+map <C-F12> :!ctags -R -f ./.git/tags .<CR><CR>
+map <C-f> :tp<CR>
+map <C-h> :tn<CR>
+map <C-o> :CtrlPTag<CR>
+map <C-i> :TagbarToggle<CR>
+nnoremap <C-g> <C-]>
+vnoremap <C-g> <C-]>
