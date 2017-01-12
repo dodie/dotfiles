@@ -18,7 +18,8 @@ Plugin 'bling/vim-airline'
 " Quickfix
 Plugin 'jceb/vim-hier'
 " File navigation
-Plugin 'kien/ctrlp.vim'            " <c-p> to quickly find files by path and name
+Plugin 'junegunn/fzf'              " :Commits, :GFiles?, :History, :Commands, <c-p> to find files
+Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'       " <F2> to toggle tree, <F3> to find current file in tree
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'majutsushi/tagbar'
@@ -124,16 +125,18 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 
-"Use the Silver Searcher for grepping and and CtrlPing.
+"Use the Silver Searcher for grepping.
 "This searcher is fast and respects the .gitignore file.
 " * to find word under cursor in current file
-" <leader>* to find word under cursor in the project
+" <leader>* to search for the word under cursor in the project
+" Look up files with FZF instead of CtrlP.
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
 endif
-nnoremap <Leader>* :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+set rtp+=~/.fzf
+nnoremap <Leader>* :Ag <C-R><C-W>
+"nmap  <silent> <Leader>* :Ag <cword><CR>
+map <C-p> :Files<CR>
 
 
 "ctags
@@ -145,7 +148,7 @@ set tags=./.git/tags-dep,tags-dep,./.git/tags,tags
 map <C-F12> :!ctags -R -f ./.git/tags .<CR><CR>
 map <C-f> :tp<CR>
 map <C-h> :tn<CR>
-map <C-o> :CtrlPTag<CR>
+map <C-o> :Tags<CR>
 map <C-i> :TagbarToggle<CR>
 nnoremap <C-g> <C-]>
 vnoremap <C-g> <C-]>
