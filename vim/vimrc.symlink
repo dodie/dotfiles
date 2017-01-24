@@ -34,7 +34,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Shougo/neocomplete.vim'
 " Scala
 Plugin 'derekwyatt/vim-scala'
-Plugin 'ensime/ensime-vim'
+"Plugin 'ensime/ensime-vim'
 "Plugin 'dscleaver/sbt-quickfix'   " source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
 " Javascript
 "Plugin 'marijnh/tern_for_vim'
