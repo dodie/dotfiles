@@ -63,16 +63,19 @@ set ttimeout
 set ttimeoutlen=50
 
 
-" Some copy-paste niceness. :)
+" Some copy-paste niceness. - Turned off
 " - F5 to toggle paste mode.
 " - F11 to hide side bar to ease copy-pasting from Vim.
 "   This is the reason I'm not enabling mouse support.
 " - F12 to cat the whole file. This is convenient if I
 "   need to copy paste multiple pages.
-silent! map <F11> :set invnumber <bar> :GitGutterToggle<CR>
-"set mouse=a "Enable mouse support
-silent! map <F12> :!clear<CR>:exe '!cat %'<CR>
-set pastetoggle=<F5>
+"silent! map <F11> :set invnumber <bar> :GitGutterToggle<CR>
+"silent! map <F12> :!clear<CR>:exe '!cat %'<CR>
+"set pastetoggle=<F5>
+
+" Using the system clipboard by default
+set mouse=a "Enable mouse support, to let the terminal handle the text, press SHIFT while selecting.
+set clipboard=unnamedplus " Using the system clipboard. viwp to change text with clipboard content instead of ciw<ins>
 
 "Shortcut for Spelling
 nn <F7> :setlocal spell! spell?<CR>
