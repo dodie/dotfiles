@@ -4,3 +4,4 @@ sudo apt-get install stalonetray
 sudo apt-get install feh
 sudo apt-get install xcompmgr
 sudo apt-get install gsimplecal
+sudo apt-get install xbacklight

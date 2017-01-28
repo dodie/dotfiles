@@ -41,6 +41,8 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_d), spawn "gsimplecal")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
+        , ((mod4Mask .|. shiftMask .|. controlMask, xK_o), spawn "xbacklight -inc 10")
+        , ((mod4Mask .|. shiftMask .|. controlMask, xK_p), spawn "xbacklight -dec 10")
         , ((0, xK_Print), spawn "ksnapshot")
 	]
 
