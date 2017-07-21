@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Find the most changed paths in the current directory and it's subdirectories.
+# The script does not track renames and deletions, it's simply display the count of
+# the changes for all files from the current directory.
+#
+# It accepts git-log arguments, for example --since="1 week ago"
+
+git log --pretty=format: --name-only "$1" . | grep -v "^$" | sort | uniq -c | sort -rg
+

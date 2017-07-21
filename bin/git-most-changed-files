@@ -1,18 +1,15 @@
 #!/bin/sh
 
 # Find the most changed files in the current directory and it's subdirectories.
-# The script tracks renames.
-# TODO: add option to run quick version
-#TODO: add support for since, like git log --since="1 week ago"
+# The script tracks renames, and only shows currently existing files.
+#
+# It accepts git-log arguments, for example --since="1 week ago"
 
+arg=$1
 git ls-files |
 while read filename
 do
-  set $(git log --follow --oneline "$filename" | wc)
+  set $(git log --follow --oneline "$arg" "$filename" | wc)
   printf '%s\t%s\n' $1 "$filename"
-done | sort -n | cat
-
-# Faster version that does not tracks renames, and prints deleted files from history.
-#git log --pretty=format: --name-only | grep -v "^$" | sort | uniq -c | sort -rg | head -10
-
+done | sort -n | grep -v ^0 | cat
 
