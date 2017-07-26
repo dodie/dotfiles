@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# List unmerged commits with diffs on current branch.
+
+git log -p origin/$1...
+
