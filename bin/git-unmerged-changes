@@ -2,5 +2,5 @@
 #
 # List unmerged commits with diffs on current branch.
 
-git log -p origin/$1...
+git log --right-only --cherry-pick -p $1...
 

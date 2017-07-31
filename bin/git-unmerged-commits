@@ -2,5 +2,5 @@
 #
 # List unmerged commits on current branch.
 
-git log --name-status origin/$1...
+git log --right-only --cherry-pick --name-status $1...
 
