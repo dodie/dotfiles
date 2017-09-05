@@ -13,6 +13,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'dodie/vim-monokai-refined'
 " Git
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 " Quickfix
@@ -29,11 +30,14 @@ Plugin 'scrooloose/nerdcommenter'  " [num]<leader>ci to toggle comment
 Plugin 'terryma/vim-expand-region' " v to expand, <c-v> to shrink visual selection
 Plugin 'luochen1990/rainbow'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'dodie/vim-disapprove-deep-indentation'
+Plugin 'sjl/gundo.vim'
+
 " Autocomplete
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neocomplete.vim'
 " Scala
-Plugin 'derekwyatt/vim-scala'
+"Plugin 'derekwyatt/vim-scala'
 "Plugin 'ensime/ensime-vim'
 "Plugin 'dscleaver/sbt-quickfix'   " source ~/.vim/bundle/sbt-quickfix/src/main/resources/vim-sbt/plugin/sbtquickfix.vim
 " Javascript
@@ -62,20 +66,12 @@ set cursorline
 set ttimeout
 set ttimeoutlen=50
 
+"Disable markdown syntax conceal
+let g:markdown_syntax_conceal = 0
 
-" Some copy-paste niceness. - Turned off
-" - F5 to toggle paste mode.
-" - F11 to hide side bar to ease copy-pasting from Vim.
-"   This is the reason I'm not enabling mouse support.
-" - F12 to cat the whole file. This is convenient if I
-"   need to copy paste multiple pages.
-"silent! map <F11> :set invnumber <bar> :GitGutterToggle<CR>
-"silent! map <F12> :!clear<CR>:exe '!cat %'<CR>
-"set pastetoggle=<F5>
-
-" Using the system clipboard by default
-set mouse=a "Enable mouse support, to let the terminal handle the text, press SHIFT while selecting.
-set clipboard=unnamedplus " Using the system clipboard. viwp to change text with clipboard content instead of ciw<ins>
+"Mouse and clipboard settings
+set mouse=a "Enable mouse support. To let the terminal handle the text, press SHIFT while selecting.
+set clipboard=unnamedplus "Using the system clipboard. viwp to change text with clipboard content instead of ciw<ins>
 
 "Shortcut for Spelling
 nn <F7> :setlocal spell! spell?<CR>
@@ -100,7 +96,7 @@ augroup Highlights
     autocmd WinEnter,VimEnter * :silent! call matchadd('ExtraWhitespace', '\s\+$', -1)
 
     "Highlight occurrences of the word under the cursor
-    autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    autocmd CursorMoved * exe printf('match WordUnderCursorSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
     "Highlight TODO and FIXME
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
@@ -156,3 +152,38 @@ map <C-o> :Tags<CR>
 map <C-i> :TagbarToggle<CR>
 nnoremap <C-g> <C-]>
 vnoremap <C-g> <C-]>
+
+" visual autocomplete for command menu
+set wildmenu
+
+" highlight search results
+" - <leader><space> to reset search highlight
+set hlsearch " highlight matches
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Use smart casing for searches. Eg:
+" /copyright    ->    Case insensitive search
+" /Copyright    ->    Case sensitive search
+set ignorecase
+set smartcase
+
+" search as-you-type
+" - <c-n> to jump to next result while typing
+set incsearch " enable search-as-you-type
+"cnoremap <c-n> <CR>n/<c-p>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+"add https://github.com/sjl/gundo.vim
+"https://dougblack.io/words/a-good-vimrc.html#spaces from gundo
+
+set lazyredraw
+
+" setup gundo plugin to display the undo tree with <leader>u
+let g:gundo_prefer_python3 = 1
+nnoremap <leader>u :GundoToggle<CR>
