@@ -184,11 +184,22 @@ nnoremap gV `[v`]
 
 set lazyredraw
 
-" setup gundo plugin to display the undo tree with <leader>u
+" History
+" - Use 'g-' and 'g+' to navigate history items based on their creation date.
+"   This can be handy if you accidentally 'lose' history when undoing around.
+" - Use <leader>u to launch Gundo to view the full undo tree.
 let g:gundo_prefer_python3 = 1
 nnoremap <leader>u :GundoToggle<CR>
+
+" Use persistent history.
+if !isdirectory("/tmp/.vim-undo-dir")
+    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+endif
+set undodir=/tmp/.vim-undo-dir
+set undofile
 
 " tab vs space
 "set tabstop=2
 "set shiftwidth=2
 "set expandtab
+
