@@ -51,6 +51,16 @@ done
 
 unset config_files
 
+# set dual monitors
+dual () {
+    xrandr --output HDMI1 --primary --left-of VGA1 --output VGA1 --auto
+}
+
+# set single monitor
+single () {
+    xrandr --output HDMI1 --off
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Setting ag as the default source for fzf
