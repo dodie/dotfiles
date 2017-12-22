@@ -32,6 +32,7 @@ Plugin 'luochen1990/rainbow'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dodie/vim-disapprove-deep-indentation'
 Plugin 'sjl/gundo.vim'
+Plugin 'vim-scripts/yaifa.vim'
 
 " Autocomplete
 "Plugin 'Valloric/YouCompleteMe'
@@ -203,3 +204,11 @@ set undofile
 "set shiftwidth=2
 "set expandtab
 
+" substitute visual selection with execution
+" :!<interpreter>    for example :!node
+"
+" sort lines :!sort
+" ...
+"
+" peek results:
+" :w !<interpreter>
