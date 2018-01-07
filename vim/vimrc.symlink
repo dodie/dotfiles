@@ -81,7 +81,7 @@ nn <F7> :setlocal spell! spell?<CR>
 " z=   - find suggestions for a wrong word
 
 "use J to merge lines and K to split them
-nnoremap K i<CR><Esc>k:.,.s/\s\+$//e<CR>j:.,.s/^\s\+//e<CR>
+nnoremap K i<CR><Esc>k:.,.s/\s\+$//e<CR>j:.,.s/^\s\+//e<CR>:nohlsearch<CR>
 
 "Filetype associations
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
