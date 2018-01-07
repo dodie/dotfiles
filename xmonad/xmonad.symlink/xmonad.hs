@@ -43,6 +43,8 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_p), spawn "amixer -D pulse sset Master 5%-")
         , ((mod4Mask .|. shiftMask .|. controlMask, xK_o), spawn "xbacklight -inc 10")
         , ((mod4Mask .|. shiftMask .|. controlMask, xK_p), spawn "xbacklight -dec 10")
+        , ((mod4Mask .|. controlMask, xK_n), spawn "google-chrome")
+        , ((mod4Mask .|. shiftMask .|. controlMask, xK_n), spawn "google-chrome --incognito")
         , ((0, xK_Print), spawn "ksnapshot")
 	]
 
