@@ -3,6 +3,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
         , bgColor = "black"
         , fgColor = "grey"
         , position = TopW L 100
+        , iconRoot = ".dotfiles/xmonad/resources"
         , commands = [ Run Battery ["-t","<left>% / <timeleft>","-L","30","-H","60","-h","green","-n","yellow","-l","red"] 10
                         , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
@@ -15,5 +16,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% } <action=`gsimplecal`>%date%</action> <fc=#ffffff>%time%</fc> { %cpu% | %battery% | <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> "
+        , template = "%StdinReader% } <action=`gsimplecal`>%date%</action> <fc=#ffffff>%time%</fc> { %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`><icon=network-icon_24.xpm/></action> <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> "
         }
