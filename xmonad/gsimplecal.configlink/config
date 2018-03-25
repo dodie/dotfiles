@@ -1,2 +1,2 @@
 mainwindow_position = center
-external_viewer = google-chrome "https://calendar.google.com/calendar/r/day/%Y/%m/%d"
+external_viewer = google-chrome "https://calendar.google.com/calendar/r/week/%Y/%m/%d"
