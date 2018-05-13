@@ -22,6 +22,7 @@ Plugin 'jceb/vim-hier'
 Plugin 'junegunn/fzf'              " :Commits, :GFiles?, :History, :Commands, <c-p> to find files
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'       " <F2> to toggle tree, <F3> to find current file in tree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'majutsushi/tagbar'
 " Source editing
@@ -180,9 +181,6 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
 
-"add https://github.com/sjl/gundo.vim
-"https://dougblack.io/words/a-good-vimrc.html#spaces from gundo
-
 set lazyredraw
 
 " History
@@ -198,6 +196,13 @@ if !isdirectory("/tmp/.vim-undo-dir")
 endif
 set undodir=/tmp/.vim-undo-dir
 set undofile
+
+" Jump to last cursor position when opening a file, see :help last-position-jump
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
 
 " tab vs space
 "set tabstop=2
