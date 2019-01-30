@@ -37,7 +37,6 @@ main = do
 	, mouseBindings = myMouseBindings
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((mod4Mask, xK_l), spawn "xscreensaver-command -lock")
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
         , ((mod4Mask .|. shiftMask, xK_d), spawn "gsimplecal")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "amixer -D pulse sset Master 5%+")
