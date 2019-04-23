@@ -63,6 +63,9 @@ single () {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Ignore duplicate entries
+setopt HIST_IGNORE_ALL_DUPS
+
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
