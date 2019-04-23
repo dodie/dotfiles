@@ -129,9 +129,11 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 "Use the Silver Searcher for grepping.
 "This searcher is fast and respects the .gitignore file.
-" * to find word under cursor in current file
-" <leader>* to search for the word under cursor in the project
-" Look up files with FZF instead of CtrlP.
+"Look up files with FZF instead of CtrlP.
+" - * to find word under cursor in current file
+" - <leader>* to search for the word under cursor in the project
+" - Use <Tab>, <Shift-Tab> <Alt-a> or <Alt-d> to select multiple items in the
+"   list, then press enter to populate quickfix list. (automatically opened)
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
@@ -139,6 +141,24 @@ set rtp+=~/.fzf
 nnoremap <Leader>* :Ag <C-R><C-W>
 "nmap  <silent> <Leader>* :Ag <cword><CR>
 map <C-p> :Files<CR>
+
+"Quickfix
+" - :copen to open
+" - cycle quickfix enties with N and P
+"- dd to remove entry
+nnoremap N :cn<CR>
+nnoremap P :cp<CR>
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 
 "ctags
