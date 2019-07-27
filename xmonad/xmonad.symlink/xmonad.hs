@@ -24,8 +24,8 @@ main = do
         , layoutHook = smartBorders $
                        avoidStruts $
                        --smartSpacing 4 $
-                       Mirror (Tall 1 (3/100) (1/2))
-                       ||| Tall 1 (3/100) (1/2)
+                       Tall 1 (3/100) (1/2)
+                       ||| Mirror (Tall 1 (3/100) (1/2))
                        ||| Full
         , logHook = do --fadeInactiveLogHook 0.9
                        dynamicLogWithPP $ xmobarPP
@@ -34,7 +34,7 @@ main = do
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , startupHook = myStartupHook
-	, mouseBindings = myMouseBindings
+        , mouseBindings = myMouseBindings
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask .|. shiftMask, xK_t), sendMessage ToggleStruts)
@@ -46,7 +46,7 @@ main = do
         , ((mod4Mask .|. controlMask, xK_n), spawn "google-chrome")
         , ((mod4Mask .|. shiftMask .|. controlMask, xK_n), spawn "google-chrome --incognito")
         , ((0, xK_Print), spawn "ksnapshot")
-	]
+        ]
 
 myStartupHook = do
                 spawn "feh --bg-scale ~/.dotfiles/wallpaper/wallpaper.png"
