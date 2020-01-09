@@ -1,0 +1,39 @@
+#!/bin/sh
+
+[ $# -eq 0 ] && {
+  echo "Usage: jshell-resolve [group:artifact:version]+" >&2;
+  echo "Example: jshell-resolve com.google.guava:guava:28.2-jre" >&2;
+  exit 1;
+}
+
+DEPENDENCIES=$(for dep in $@; do
+	echo "implementation '$dep'"
+done)
+
+CMD=$(cat <<-END_OF_CMD
+set -euo pipefail
+cat > "build.gradle" <<- END_OF_BUILD
+plugins {
+  id 'java'
+}
+repositories {
+  jcenter()
+  mavenCentral()
+}
+dependencies {
+  $DEPENDENCIES
+}
+task printClasspath {
+  doLast {
+    new File(projectDir, "classpath").text = 'export CLASSPATH="' + sourceSets.main.runtimeClasspath.asPath + '"'
+  }
+}
+END_OF_BUILD
+gradle --version > /dev/null 2>&1
+gradle printClasspath
+source classpath
+jshell
+END_OF_CMD
+)
+
+docker run -it --rm -u gradle gradle:jdk13 /bin/bash -c "$CMD"
