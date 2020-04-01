@@ -90,6 +90,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "Let some uppercase commands work as their lowercase counterparts
 cnoreabbrev W w
 cnoreabbrev Q q
+command! Wq wq
+command! WQ wq
 
 augroup Highlights
     autocmd!
