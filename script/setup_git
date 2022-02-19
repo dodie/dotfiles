@@ -27,6 +27,29 @@ fail () {
   exit
 }
 
+setup_gitconfig () {
+  if ! [ -f git/gitconfig.symlink ]
+  then
+    info 'setup gitconfig'
+
+    git_credential='cache'
+    if [ "$(uname -s)" == "Darwin" ]
+    then
+      git_credential='osxkeychain'
+    fi
+
+    user ' - What is your github author name?'
+    read -e git_authorname
+    user ' - What is your github author email?'
+    read -e git_authoremail
+
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
+
+    success 'gitconfig'
+  fi
+}
+
+
 link_file () {
   local src=$1 dst=$2
 
@@ -102,32 +125,7 @@ link_file () {
   fi
 }
 
-install_dotfiles () {
-  info 'installing dotfiles'
-
-  local overwrite_all=false backup_all=false skip_all=false
-
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
-  do
-    dst="$HOME/.$(basename "${src%.*}")"
-    link_file "$src" "$dst"
-  done
-}
-
-install_dotfiles_to_dotconfig () {
-  info 'installing dotfiles to .config'
-
-  local overwrite_all=false backup_all=false skip_all=false
-
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.configlink')
-  do
-    dst="$HOME/.config/$(basename "${src%.*}")"
-    link_file "$src" "$dst"
-  done
-}
-
-install_dotfiles
-install_dotfiles_to_dotconfig
+setup_gitconfig
 
 echo ''
 echo '  All installed!'
