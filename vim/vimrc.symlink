@@ -100,7 +100,7 @@ augroup Highlights
     autocmd WinEnter,VimEnter * :silent! call matchadd('ExtraWhitespace', '\s\+$', -1)
 
     "Highlight occurrences of the word under the cursor
-    autocmd CursorMoved * exe printf('match WordUnderCursorSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    "autocmd CursorMoved * exe printf('match WordUnderCursorSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
     "Highlight TODO and FIXME
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
