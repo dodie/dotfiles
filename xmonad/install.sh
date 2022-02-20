@@ -6,3 +6,7 @@ sudo apt-get install xcompmgr
 sudo apt-get install gsimplecal
 sudo apt-get install xbacklight
 sudo apt-get install slurm
+
+sudo add-apt-repository ppa:noobslab/themes
+sudo apt-get update
+sudo apt-get install delorean-dark-3.16
