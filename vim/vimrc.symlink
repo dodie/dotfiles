@@ -144,39 +144,6 @@ nnoremap <Leader>* :Ag <C-R><C-W>
 "nmap  <silent> <Leader>* :Ag <cword><CR>
 map <C-p> :Files<CR>
 
-"Quickfix
-" - :copen to open
-" - cycle quickfix enties with N and P
-"- dd to remove entry
-nnoremap N :cn<CR>
-nnoremap P :cp<CR>
-function! RemoveQFItem()
-  let curqfidx = line('.') - 1
-  let qfall = getqflist()
-  call remove(qfall, curqfidx)
-  call setqflist(qfall, 'r')
-  execute curqfidx + 1 . "cfirst"
-  :copen
-endfunction
-:command! RemoveQFItem :call RemoveQFItem()
-" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
-autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
-
-
-"ctags
-"to search for tags         : ctrl+o
-"to jump to tag under cursor: ctrl+g
-"when it hits multiple tags : ctrl+h for next tag, ctrl+f for previous
-"to jump up on tag stack    : ctrl+t
-set tags=./.git/tags-dep,tags-dep,./.git/tags,tags
-map <C-F12> :!ctags -R -f ./.git/tags .<CR><CR>
-map <C-f> :tp<CR>
-map <C-h> :tn<CR>
-map <C-o> :Tags<CR>
-map <C-i> :TagbarToggle<CR>
-nnoremap <C-g> <C-]>
-vnoremap <C-g> <C-]>
-
 " visual autocomplete for command menu
 set wildmenu
 
@@ -239,3 +206,6 @@ autocmd BufReadPost *
 "
 " peek results:
 " :w !<interpreter>
+
+" Disable quote concealing in JSON files
+let g:vim_json_conceal=0
