@@ -49,9 +49,6 @@ map("n", "<F7>", ":setlocal spell! spell?<CR>")
 -- TODO: check other options
 -- In Visual select lines then =
 
--- Commenting
--- TODO, should be <ld>ci to toggle
-
 -- Plugins
 -- :Lazy  - manage
 
