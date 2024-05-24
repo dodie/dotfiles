@@ -30,6 +30,7 @@ return {
       require "configs.lspconfig"
     end,
   },
+  -- MasonInstallAll   - install managed tools
   {
     "williamboman/mason.nvim",
     opts = {
@@ -48,11 +49,6 @@ return {
         "isort", "mypy", "pylint"
       },
     },
-    -- Create a venv, and :
-    -- pip install neovim
-    -- pip install debugpy
-    -- pip install isort
-
   },
   {
     "nvim-treesitter/nvim-treesitter",
