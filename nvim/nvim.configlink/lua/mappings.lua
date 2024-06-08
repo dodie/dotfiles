@@ -15,7 +15,7 @@ vim.cmd("command! WQ wq")
 -- Navigation
 -- :Telescope  - a nice "find anything" list, including git_branches and git_commits
 map("n", "<C-p>", ":Telescope find_files <CR>")
-map("n", "<M-p>", ":Telescope grep_string <CR>")
+map("n", "<M-p>", ":Telescope live_grep <CR>")
 map("n", "<leader>*", ":lua require('telescope.builtin').grep_string({ search = '<C-R><C-W>' })<CR>")
 
 -- Tree
