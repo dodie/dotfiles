@@ -1,5 +1,10 @@
 return {
   {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble"
+  },
+  {
     "tpope/vim-fugitive",
     lazy=false,
   },

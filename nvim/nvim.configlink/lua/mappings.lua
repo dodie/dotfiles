@@ -71,3 +71,12 @@ map('v', '<C-v>', '<Plug>(expand_region_shrink)', noremap_silent_opts)
 -- :lua require"gitsigns".blame_line{full=true}  - show popup with full message and diff
 -- :Gitsigns toggle_current_line_blame - virtual text for selected line
 
+-- Symbols and diagnostics
+map('n', '<F8>', "<cmd>Trouble diagnostics toggle<cr>") -- Diagnostics for all open buffers
+-- map('n', '<F8>', "<cmd>Trouble diagnostics toggle filter.buf=0<cr>") -- Diagnostics for current buffer only
+map('n', '<F5>', "<cmd>Trouble symbols toggle focus=false<cr>") -- Show all symbols in the current file
+map('n', '<F6>', "<cmd>Trouble lsp toggle focus=false win.position=right<cr>") -- LSP definitions for the symbol under cursor
+                                                                               -- can be focused on just one category, e.g. usages
+-- map('n', '<leader>xL', "<cmd>Trouble loclist toggle<cr>") -- Location List
+-- map('n', '<leader>xQ', "<cmd>Trouble qflist toggle<cr>") -- Quickfix List
+-- TODO: jump to definition
