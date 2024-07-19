@@ -38,14 +38,28 @@ setup_gitconfig () {
       git_credential='osxkeychain'
     fi
 
-    user ' - What is your github author name?'
+    user ' - What is your work git author name?'
     read -e git_authorname
-    user ' - What is your github author email?'
+    user ' - What is your work git author email?'
     read -e git_authoremail
 
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
 
     success 'gitconfig'
+  fi
+
+  if ! [ -f git/oss_gitconfig.inc.symlink ]
+  then
+    info 'setup oss gitconfig'
+
+    user ' - What is your OSS git author name?'
+    read -e git_authorname
+    user ' - What is your OSS git author email?'
+    read -e git_authoremail
+
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/oss_gitconfig.symlink.example > git/oss_gitconfig.inc.symlink
+
+    success 'oss gitconfig'
   fi
 }
 
