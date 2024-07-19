@@ -1,4 +1,5 @@
 git/gitconfig.symlink
+git/oss_gitconfig.inc.symlink
 
 xmonad/xmonad.symlink/xmonad-x86_64-linux
 xmonad/xmonad.symlink/xmonad.errors
