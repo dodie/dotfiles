@@ -60,6 +60,11 @@ local noremap_silent_opts = { noremap = true, silent = true }
 map('v', 'v', '<Plug>(expand_region_expand)', noremap_silent_opts)
 map('v', '<C-v>', '<Plug>(expand_region_shrink)', noremap_silent_opts)
 
+-- Add "global" object
+map('n', 'yig', ':%y<CR>', { noremap = true, silent = true })
+map('n', 'vig', 'ggVG', { noremap = true, silent = true })
+map('n', 'cig', ':%d<CR>i', { noremap = true, silent = true })
+
 -- Terminal
 -- alt-i - floating
 -- alt-h - h-split
