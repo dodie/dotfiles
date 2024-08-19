@@ -47,3 +47,4 @@ vim.schedule(function()
 end)
 
 require "configs.highlights"
+require "configs.substitfution"
