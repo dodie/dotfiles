@@ -85,4 +85,9 @@ map('n', '<F6>', "<cmd>Trouble lsp toggle focus=false win.position=bottom<cr>", 
                                                                                -- can be focused on just one category, e.g. usages
 -- map('n', '<leader>xL', "<cmd>Trouble loclist toggle<cr>") -- Location List
 -- map('n', '<leader>xQ', "<cmd>Trouble qflist toggle<cr>") -- Quickfix List
--- TODO: jump to definition
+
+
+-- Disable Help page
+vim.api.nvim_set_keymap('n', '<F1>', ':echo<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<F1>', '<C-o>:echo<CR>', { noremap = true, silent = true })
+
