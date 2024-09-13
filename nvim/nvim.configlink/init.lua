@@ -9,6 +9,12 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
     end,
 })
 
+-- https://www.reddit.com/r/neovim/comments/1febwuu/best_neovim_config_option_ive_found_all_year/
+-- sync buffers automatically
+vim.opt.autoread = true
+-- disable neovim generating a swapfile and showing the error
+vim.opt.swapfile = false
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
