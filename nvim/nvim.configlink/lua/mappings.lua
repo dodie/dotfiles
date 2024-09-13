@@ -6,7 +6,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-map("n", "<leader><leader>", ":Telescope keymaps <CR>", { desc = "Command palette" })
+map("n", "<leader><leader><leader>", ":Telescope keymaps <CR>", { desc = "Command palette" })
 
 -- Let some uppercase commands work as their lowercase counterparts
 vim.cmd("cnoreabbrev W w")
