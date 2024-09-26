@@ -3,10 +3,10 @@ vim.g.mapleader = ","
 
 -- Restore cursor position
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-    pattern = { "*" },
-    callback = function()
-        vim.api.nvim_exec('silent! normal! g`"zv', false)
-    end,
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
 })
 
 -- https://www.reddit.com/r/neovim/comments/1febwuu/best_neovim_config_option_ive_found_all_year/
@@ -54,3 +54,14 @@ end)
 
 require "configs.highlights"
 require "configs.substitfution"
+
+local py_wrap_group =
+  vim.api.nvim_create_augroup("Disable wrapping for Python as it is handled by the formatter better", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.py",
+  group = py_wrap_group,
+  callback = function()
+    vim.wo.wrap = false
+    vim.opt.textwidth = 999
+  end,
+})

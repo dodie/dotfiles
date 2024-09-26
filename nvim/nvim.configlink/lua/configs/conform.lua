@@ -12,4 +12,6 @@ local options = {
   },
 }
 
+-- See main init.lua where wrapping is disabled for Python.
+
 require("conform").setup(options)
