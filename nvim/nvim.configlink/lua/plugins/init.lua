@@ -2,27 +2,27 @@ return {
   {
     "folke/trouble.nvim",
     opts = {},
-    cmd = "Trouble"
+    cmd = "Trouble",
   },
   {
     "tpope/vim-fugitive",
-    lazy=false,
+    lazy = false,
   },
   {
     "terryma/vim-expand-region",
-    lazy=false,
+    lazy = false,
   },
   {
     "easymotion/vim-easymotion",
-    lazy=false,
+    lazy = false,
   },
   {
     "vim-scripts/yaifa.vim",
-    lazy=false,
+    lazy = false,
   },
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -40,9 +40,13 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "lua-language-server", "stylua",
-        "html-lsp", "css-lsp" , "prettier",
-        "pyright", "jdtls"
+        "lua-language-server",
+        "stylua",
+        "html-lsp",
+        "css-lsp",
+        "prettier",
+        "pyright",
+        "jdtls",
       },
     },
   },
@@ -50,8 +54,12 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "black", "debugpy", "flake8",
-        "isort", "mypy", "pylint"
+        "black",
+        "debugpy",
+        "flake8",
+        "isort",
+        "mypy",
+        "pylint",
       },
     },
   },
@@ -60,8 +68,13 @@ return {
     opts = {
       auto_install = true,
       ensure_installed = {
-        "vim", "lua", "vimdoc",
-        "html", "css", "python", "java"
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "python",
+        "java",
       },
     },
   },
