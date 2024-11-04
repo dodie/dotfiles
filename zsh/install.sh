@@ -18,7 +18,7 @@ cd .the_silver_searcher
 make install
 )
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install
