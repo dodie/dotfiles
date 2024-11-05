@@ -36,6 +36,7 @@ install_nerd_fonts () {
   find ~/Downloads/JetBrainsMono-2.304 -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} ~/.local/share/fonts/jetbrains-mono \;
   fc-cache -f -v
   rm -rf ~/Downloads/JetBrainsMono-2.304
+  success 'JetBrainsMonoNL Nerd Font installed, please set it up in the terminal'
 }
 
 install_dependencies
