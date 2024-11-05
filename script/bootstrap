@@ -163,9 +163,19 @@ install_dotfiles_to_dotconfig () {
   done
 }
 
+prepare_directories () {
+  info 'preparing directories'
+  mkdir -p ~/workspace
+  mkdir -p ~/workspace_oss
+  mkdir -p ~/Programs
+  mkdir -p ~/temp
+  mkdir -p ~/bin
+}
+
 setup_gitconfig
 install_dotfiles
 install_dotfiles_to_dotconfig
+prepare_directories
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
