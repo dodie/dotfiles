@@ -29,3 +29,10 @@ There's a few special files in the hierarchy.
   symlinked in when you run `script/bootstrap`.
 - **topic/\*.configlink**: Similar to .symlinks, but these files will be linked into $HOME/.config
 
+## notable archives
+
+Check git history for (outdated) config for the following tools:
+
+- xmonad
+- konsole
+- synclient

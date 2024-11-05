@@ -1,5 +1,0 @@
-# Set background image with feh
-feh --bg-scale ~/.dotfiles/xmonad/wallpaper.jpg &
-
-# get rid of the default X shaped cursor
-xsetroot -cursor_name left_ptr
