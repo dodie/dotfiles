@@ -13,9 +13,11 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 git clone https://github.com/ggreer/the_silver_searcher.git ~/.the_silver_searcher
 (
+yum -y install pcre-devel
 cd .the_silver_searcher
 ./build.sh
-make install
+# make install # fails so let's just create a symlink manually
+ln -s ~/.the_silver_searcher/ag ~/bin/ag
 )
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
