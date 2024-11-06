@@ -9,5 +9,7 @@ then
   dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'<Primary><Shift>m'"
   dconf write /org/gnome/terminal/legacy/keybindings/zoom-in "'<Primary>KP_Add'"
   dconf write /org/gnome/terminal/legacy/keybindings/zoom-out "'<Primary>KP_Subtract'"
+
+  gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false # Ensure F10 is not caught
 fi
 
