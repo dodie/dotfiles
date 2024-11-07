@@ -40,18 +40,8 @@ map("n", "<F3>", ":NvimTreeFindFile<CR>", { desc = "Find current file in tree" }
 -- TODO: not yet ideal, F3 in the tree should jump back to file and f4 should be the preview, which is tab for now
 
 -- Toggle comment
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ci",
-  '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>',
-  { noremap = true, silent = true, desc = "Toggle comment" }
-)
-vim.api.nvim_set_keymap(
-  "v",
-  "<leader>ci",
-  '<ESC><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
-  { noremap = true, silent = true, desc = "Toggle comment" }
-)
+map("n", "<leader>ci", "gcc", { desc = "Toggle comment", remap = true })
+map("v", "<leader>ci", "gc", { desc = "Toggle comment", remap = true })
 
 --use J to merge lines and K to split them
 map("n", "K", "i<CR><Esc>k:.,.s/\\s\\+$//e<CR>j:.,.s/^\\s\\+//e<CR>:nohlsearch<CR>")
