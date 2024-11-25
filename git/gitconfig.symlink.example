@@ -6,7 +6,8 @@
 [credential]
         helper = GIT_CREDENTIAL_HELPER
 [alias]
-        wtf     = !$ZSH/bin/git-wtf
+        wtf         = !$ZSH/bin/git-wtf
+        diff-no-ext = !$ZSH/bin/git-diff-no-ext
 [color]
         diff = auto
         status = auto
