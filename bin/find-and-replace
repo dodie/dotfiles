@@ -1,0 +1,7 @@
+#!/bin/bash
+
+OLDTEXT="$1"
+NEWTEXT="$2"
+
+grep -rlZ "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+
