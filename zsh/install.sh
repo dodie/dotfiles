@@ -1,6 +1,8 @@
 sudo apt-get install zsh
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 # The setup script issues chsh to change the default shell to ZSH. This may fail if your user is managed via LDAP.
 # To change the shell in such cases, do the following:
 # sudo vi /etc/sssd/sssd.conf
