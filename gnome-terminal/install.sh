@@ -2,6 +2,8 @@
 
 if command -v gnome-terminal 2>&1 >/dev/null
 then
+  dconf write /org/gnome/terminal/legacy/keybindings/move-tab-left "'<Primary><Shift>Left'"
+  dconf write /org/gnome/terminal/legacy/keybindings/move-tab-right "'<Primary><Shift>Right'"
   dconf write /org/gnome/terminal/legacy/keybindings/next-tab "'<Shift>Right'"
   dconf write /org/gnome/terminal/legacy/keybindings/prev-tab "'<Shift>Left'"
   dconf write /org/gnome/terminal/legacy/keybindings/reset-and-clear "'<Primary><Shift>k'"
@@ -12,4 +14,3 @@ then
 
   gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false # Ensure F10 is not caught
 fi
-
