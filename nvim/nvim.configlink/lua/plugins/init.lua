@@ -27,12 +27,20 @@ return {
       require "configs.conform"
     end,
   },
-
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000,    -- needs to be loaded in first
+    config = function()
+      require('tiny-inline-diagnostic').setup()
+    end
+  },
   {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
+      vim.diagnostic.config({ virtual_text = false }) -- diagnostic messages handled by tiny-inline-diagnostic
     end,
   },
   -- MasonInstallAll   - install managed tools
