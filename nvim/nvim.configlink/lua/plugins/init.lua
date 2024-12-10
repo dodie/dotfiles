@@ -41,6 +41,7 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
       vim.diagnostic.config({ virtual_text = false }) -- diagnostic messages handled by tiny-inline-diagnostic
+      -- Examples on LSP integrations: https://github.com/NikitaRevenco/instant-lsp.nvim/blob/main/lua/instant-lsp/lang/html.lua
     end,
   },
   -- MasonInstallAll   - install managed tools
