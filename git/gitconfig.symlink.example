@@ -45,3 +45,7 @@
 [includeIf "gitdir:~/workspace_oss/"]
         # Use custom author config for repos checked out to this directory.
 	path = ~/.oss_gitconfig.inc
+
+[includeIf "gitdir:~/.dotfiles/"]
+        # Use custom author config for repos checked out to this directory.
+	path = ~/.oss_gitconfig.inc
