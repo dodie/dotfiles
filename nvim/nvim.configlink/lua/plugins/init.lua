@@ -56,6 +56,7 @@ return {
         "prettier",
         "pyright",
         "jdtls",
+        "harper-ls",
       },
     },
   },
