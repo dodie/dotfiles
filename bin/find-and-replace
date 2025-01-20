@@ -3,5 +3,9 @@
 OLDTEXT="$1"
 NEWTEXT="$2"
 
-grep -rlZ "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
-
+if ! command -v rg &> /dev/null; then
+  echo "ripgrep (rg) is not installed. Searching with grep (might take a while...)"
+  grep -rlZ "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+else
+  rg --null --files-with-matches "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+fi
