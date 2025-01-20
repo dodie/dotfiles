@@ -14,3 +14,16 @@ then
 
   gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false # Ensure F10 is not caught
 fi
+
+# TODO: font installation is in nvim/install.sh, merge it here.
+# Sadly, it may not be easy to automatically use it because it's associated to a profile.
+# If there's a default profile, it could be used to register it.
+#
+# Also set up unlimited scrollback, which is on the profile.
+#
+# For reference:
+# [legacy/profiles:/:some-id]
+# font='JetBrainsMonoNL Nerd Font 22'
+# scrollback-unlimited=true
+# use-system-font=false
+
