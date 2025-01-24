@@ -78,3 +78,6 @@ alias vim=nvim
 
 alias "c=xclip"
 alias "v=xclip -o"
+
+
+alias "open=xdg-open"
