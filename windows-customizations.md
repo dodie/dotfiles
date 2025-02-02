@@ -1,6 +1,6 @@
 # Windows customizations
 
-## Settings
+## Windows Settings
 
 - Go to "Time & language > Language & region > Options" in Settings. Keep the English language, but change the Keyboard config to Hungarian. This way the language of Windows will be still English, but typing will be on a Hungarian layout.
 - Right-click on the taskbar and select "Taskbar settings" to go to "Personalization > Taskbar" in Settings
@@ -15,5 +15,9 @@
 
 ## Tools
 
-- PowerToys for Windows (for text extractor)
+Notepad
+- Settings > Opening Notepad > When Notepad starts: Start new session and discard unsaved changes
+
+Install:
+- PowerToys for Windows (for Text Extractor and Advanced Paste)
 - Notepad++
