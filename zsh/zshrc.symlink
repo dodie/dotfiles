@@ -75,6 +75,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 . "$HOME/.asdf/asdf.sh"
 
 alias vim=nvim
+export EDITOR=nvim
 
 alias "c=xclip"
 alias "v=xclip -o"
