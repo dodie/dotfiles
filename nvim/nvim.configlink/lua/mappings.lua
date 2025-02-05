@@ -6,6 +6,9 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+-- Ctrl backspace to remove last word
+map("i", "<C-h>", "<C-W>")
+
 map("n", "<leader><leader><leader>", ":Telescope keymaps <CR>", { desc = "Command palette" })
 
 -- Let some uppercase commands work as their lowercase counterparts
