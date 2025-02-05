@@ -49,3 +49,5 @@
 [includeIf "gitdir:~/.dotfiles/"]
         # Use custom author config for repos checked out to this directory.
 	path = ~/.oss_gitconfig.inc
+[commit]
+	verbose = true
