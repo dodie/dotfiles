@@ -1,0 +1,84 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Find and replace in `git-diff`
+# ------------------------------
+# You edited many files in a large project only to realize that you consistently made a mistake:
+# you should have used "bar" instead of "foo" everywhere.
+# Now you'd like to replace "foo" with "bar" in all the changes you've made. You can't use
+# find and replace in the working tree as "foo" appears in the repository many times, and you'd
+# only like to modify your changes.
+#
+# Sounds familiar? Then run: git edit-diff "foo" "bar"
+
+
+# Ensure the script is called with the right amount of parameters.
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 <param1> <param2>" >&2
+  exit 1
+fi
+
+BACKUP_DIFF=".BACKUP_DIFF"
+MODIFIED_DIFF=".MODIFIED_DIFF"
+
+# Ensure backup diff files do not exist.
+if [ -e "${BACKUP_DIFF}" ]; then
+  echo "Error: '${BACKUP_DIFF}' already exists. Please remove or rename it before proceeding:" >&2
+  echo "  rm ${BACKUP_DIFF} ${MODIFIED_DIFF}'" >&2
+  exit 1
+fi
+if [ -e "${MODIFIED_DIFF}" ]; then
+  echo "Error: '${MODIFIED_DIFF}' already exists. Please remove or rename it before proceeding." >&2
+  echo "  rm ${BACKUP_DIFF} ${MODIFIED_DIFF}'" >&2
+  exit 1
+fi
+
+# Backup original diff
+git diff --no-ext-diff > $BACKUP_DIFF
+
+# Create new diff based on the original diff by find and replace in the changes.
+cat $BACKUP_DIFF | awk '
+  # Detect start of a new file (lines starting with "diff --git")
+  /^diff --git/ { file_section = 1; print; next }
+
+  # Metadata lines: print as is
+  /^index / || /^--- / || /^\+\+\+/ { print; next }
+
+  # Hunk headers (lines starting with @@): print as is
+  /^@@/ { file_section = 0; print; next }
+
+  # If we are in a file section, print unchanged
+  file_section { print; next }
+
+  # Modify only added lines (starting with "+", but not "+++")
+  /^\+/ { sub("'$1'", "'$2'"); print; next }
+
+  # Print everything else unchanged
+  { print }
+' > $MODIFIED_DIFF
+
+# Show the diff in the diff for the user to verify and further edit.
+# (The left pane that shows the original diff is read only.)
+vim -d $BACKUP_DIFF $MODIFIED_DIFF +"wincmd h | setlocal readonly"
+
+# Ask for confirmation
+while true; do
+  read -p "Apply changes? [Y/N] " input
+  if [[ "$input" =~ ^[Yy]$ ]]; then
+      break
+  fi
+
+  if [[ "$input" =~ ^[Nn]$ ]]; then
+      exit 3
+  fi
+
+  vim -d $BACKUP_DIFF $MODIFIED_DIFF +"wincmd h | setlocal readonly"
+done
+
+# Revert previous diff, apply new one
+git checkout .
+git apply $MODIFIED_DIFF
+
+echo "Diff edited. Use the following command to get rid of the backup files:" >&2
+echo "  rm ${BACKUP_DIFF} ${MODIFIED_DIFF}'" >&2
