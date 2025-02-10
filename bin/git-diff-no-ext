@@ -3,4 +3,4 @@
 # Git diff without any external tools. May be handy if the
 # diff.external git config is set, e.g. to use difftastic by default.
 
-git diff --no-ext-diff
+git diff --no-ext-diff $@
