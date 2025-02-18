@@ -8,6 +8,8 @@
 [alias]
         wtf         = !$ZSH/bin/git-wtf
         diff-no-ext = !$ZSH/bin/git-diff-no-ext
+        # shows recent commit messages, even for ones that are deleted
+        recent-commit-messages = reflog --pretty=format:'%C(auto)%cd%n%B==========' --date=iso
 [color]
         diff = auto
         status = auto
