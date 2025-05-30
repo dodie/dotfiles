@@ -80,8 +80,10 @@ map("n", "cig", ":%d<CR>i", { noremap = true, silent = true })
 -- alt-v - v-split
 
 -- Git
-map("n", "<leader>gba", "<cmd>Git blame<CR>", { desc = "Git blame all lines" })
-map("n", "<leader>gbsc", "<cmd>Gitsigns blame_line<CR>", { desc = "Git show commit for line" })
+map("n", "<leader>gba", "<cmd>Gitsigns blame<CR>", { desc = "Git blame all lines" })
+map("n", "<leader>gbl", "<cmd>:lua require\"gitsigns\".blame_line{full=true}<CR>",
+  { desc = "Git blame show commit for line" })
+map("n", "<leader>gbt", "<cmd>:Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle blame current line" })
 -- :lua require"gitsigns".blame_line{full=true}  - show popup with full message and diff
 -- :Gitsigns toggle_current_line_blame - virtual text for selected line
 
