@@ -1,11 +1,48 @@
 #!/bin/bash
 
+# Find and replace all occurrences of a text in the current directory.
+# Uses ripgrep if available, falls back to grep.
+#
+# Usage:
+#   find-and-replace [-e] <oldtext> <newtext>
+#   -e : use regex replace (default is plain text)
+#
+# Single-line example:
+# find-and-replace "oldtext" "newtext"
+#
+# Multi-line example:
+# replacement="some
+#   new
+#   text"
+# find-and-replace "oldtext" $replacement
+
+if [[ "$1" == "-e" ]]; then
+  USE_REGEX="true"
+  shift
+else
+  USE_REGEX=""
+fi
+
 OLDTEXT="$1"
 NEWTEXT="$2"
 
+if [[ -z "$OLDTEXT" || -z "$NEWTEXT" ]]; then
+  echo "Usage: $0 <oldtext> <newtext>"
+  exit 1
+fi
+
 if ! command -v rg &> /dev/null; then
   echo "ripgrep (rg) is not installed. Searching with grep (might take a while...)"
-  grep -rlZ "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+  if [[ -n "$USE_REGEX" ]]; then
+    grep -rlZ -- "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+  else
+    grep -rlZ -- "$OLDTEXT" . | xargs -0 perl -pe "s/\Q$OLDTEXT\E/$NEWTEXT/g" -i
+  fi
 else
-  rg --null --files-with-matches "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+  if [[ -n "$USE_REGEX" ]]; then
+    rg --null --files-with-matches "$OLDTEXT" . | xargs -0 sed -i "s/$OLDTEXT/$NEWTEXT/g"
+  else
+    rg --null --files-with-matches --fixed-strings "$OLDTEXT" . | xargs -0 perl -pe "s/\Q$OLDTEXT\E/$NEWTEXT/g" -i
+  fi
 fi
+
