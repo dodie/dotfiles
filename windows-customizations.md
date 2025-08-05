@@ -22,5 +22,11 @@ Notepad
 - Settings > Opening Notepad > When Notepad starts: Start new session and discard unsaved changes
 
 Install:
-- PowerToys for Windows (for Text Extractor and Advanced Paste)
 - Notepad++
+- PowerToys for Windows (for Text Extractor and Advanced Paste)
+  - Enable Text Extractor
+  - Enable Advanced Paste
+  - Enable Keyboard manager, and go to its settings
+    - Remap Caps Lock to Left Shift
+    - Remap Lenovo's annoying Print Screen button which is right next to Right Alt to Right Alt.
+
