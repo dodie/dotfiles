@@ -82,3 +82,50 @@ alias "v=xclip -o"
 
 
 alias "open=xdg-open"
+
+# mergiraf requires glibc 2.39, which is not present everywhere
+# this function builds a docker wrapper image and runs it
+mergiraf24() {
+  local image="mergiraf-runner:ubuntu24.04"
+
+  if ! command -v docker >/dev/null 2>&1; then
+    echo "Error: docker not found in PATH." >&2
+    return 127
+  fi
+
+  # Build the image if it doesn't exist
+  if ! docker image inspect "$image" >/dev/null 2>&1; then
+    echo "Building $image..."
+    docker build -t "$image" - <<'DOCKERFILE'
+FROM ubuntu:24.04
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      libstdc++6 ca-certificates zlib1g libgcc-s1 && \
+    rm -rf /var/lib/apt/lists/*
+ENV PATH="/usr/local/bin:${PATH}"
+WORKDIR /work
+CMD ["bash"]
+DOCKERFILE
+    local rc=$?
+    if [[ $rc -ne 0 ]]; then
+      echo "Image build failed (exit $rc)." >&2
+      return $rc
+    fi
+  fi
+
+  # warn if mergigraf is not set up on the host
+  if [[ ! -x "$HOME/bin/mergiraf" ]]; then
+    echo "Warning: $HOME/bin/mergiraf not found or not executable." >&2
+  fi
+
+  local platform_arg=()
+  [[ -n "$MERGIRAF_PLATFORM" ]] && platform_arg=(--platform="$MERGIRAF_PLATFORM")
+
+  docker run --rm -it \
+    -v "$PWD":/work -w /work \
+    -v "$HOME/bin":/usr/local/bin \
+    --user "$(id -u)":"$(id -g)" \
+    "${platform_arg[@]}" \
+    "$image" \
+    mergiraf "$@"
+}

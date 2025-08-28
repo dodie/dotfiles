@@ -22,6 +22,8 @@
         whitespace = nowarn
 [mergetool]
         keepBackup = false
+[merge]
+    conflictStyle = "diff3"
 [difftool]
         prompt = false
 [help]
