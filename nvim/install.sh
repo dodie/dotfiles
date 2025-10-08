@@ -8,9 +8,9 @@ success () {
 
 install_nvim () {
   info 'install nvim'
-  curl -L https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz -o ~/Downloads/nvim-linux64.tar.gz
+  curl -L https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.tar.gz -o ~/Downloads/nvim-linux64.tar.gz
   tar -xvzf ~/Downloads/nvim-linux64.tar.gz -C ~/Programs/
-  ln -s ~/Programs/nvim-linux64/bin/nvim ~/bin/nvim
+  ln -s ~/Programs/nvim-linux-x86_64/bin/nvim ~/bin/nvim
 
   # In case stuff is not working, do an update of plugins:
   # Run the `Lazy sync` command in nvim then delete the caches:
