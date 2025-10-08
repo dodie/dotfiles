@@ -9,6 +9,9 @@ Zach Holman: https://github.com/holman/dotfiles
 git clone https://github.com/dodie/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
+# ... provide info ...
+script/install
+# Avoid overwriting existing dotfiles
 ```
 
 ## components
