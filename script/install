@@ -1,10 +1,88 @@
 #!/usr/bin/env bash
-#
-# Run all dotfiles installers.
 
-set -e
+set -u
 
 cd "$(dirname $0)"/..
 
-# find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+STATE_FILE="${HOME}/.tool-install"
+
+if [[ ! -f "$STATE_FILE" ]]; then
+	touch "$STATE_FILE"
+fi
+
+is_installed() {
+	local topic="$1"
+	grep -Fxq "$topic" "$STATE_FILE"
+}
+
+record_installed() {
+	local topic="$1"
+	if ! is_installed "$topic"; then
+		printf '%s\n' "$topic" >> "$STATE_FILE"
+	fi
+}
+
+confirm() {
+	local prompt="$1"
+	local reply
+	while true; do
+		read -r -p "$prompt (Y/N): " reply
+		case "$reply" in
+			[Yy]) return 0 ;;
+			[Nn]) return 1 ;;
+			*) echo "Please answer Y or N." ;;
+		esac
+	done
+}
+
+echo "=== Topic installer ==="
+echo "State file: $STATE_FILE"
+echo
+
+shopt -s nullglob
+for dir in */ ; do
+	[[ "$dir" == "script/" ]] && continue
+	[[ ! -d "$dir" ]] && continue
+
+	topic="${dir%/}"
+	installer_path="${dir}install.sh"
+
+	echo "Topic: ${topic}"
+
+	if [[ ! -f "$installer_path" ]]; then
+		echo "  🚫 Skip: no install.sh"
+		continue
+	fi
+
+	if [[ -f "${dir}support.sh" ]]; then
+		bash "${dir}support.sh"
+		if [[ $? -ne 0 ]]; then
+			echo "  🚫 Skip: not supported"
+			continue
+		fi
+	fi
+
+	if is_installed "$topic"; then
+		if confirm "  '$topic' already installed. Reinstall?"; then
+			echo "  → Running $installer_path"
+			bash "$installer_path"
+			record_installed "$topic"
+			echo "  ✓ Reinstalled '$topic'"
+		else
+			echo "  🚫 Skip"
+		fi
+	else
+		if confirm "  Install '$topic'?"; then
+			echo "  → Running $installer_path"
+			bash "$installer_path"
+			record_installed "$topic"
+			echo "  ✓ Installed '$topic'"
+		else
+			echo "  🚫 Skip"
+		fi
+	fi
+
+	echo
+done
+
+echo "✓ All topics done."
