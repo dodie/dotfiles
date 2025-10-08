@@ -31,12 +31,6 @@ rm fd.tar.gz
 ln -s ~/Programs/fd-v10.2.0-x86_64-unknown-linux-gnu/fd ~/bin/fd
 )
 
-# Requirements for python
-sudo yum -y install sqlite-devel
-sudo yum -y install libffi-dev
-sudo yum -y install bzip2-devel
-sudo yum -y install ncurses-devel
-
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
