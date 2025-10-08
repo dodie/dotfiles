@@ -6,12 +6,6 @@ success () {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
-
-install_dependencies () {
-  info 'install dependencies'
-  yum install xclip
-}
-
 install_nvim () {
   info 'install nvim'
   curl -L https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz -o ~/Downloads/nvim-linux64.tar.gz
@@ -39,7 +33,6 @@ install_nerd_fonts () {
   success 'JetBrainsMonoNL Nerd Font installed, please set it up in the terminal'
 }
 
-install_dependencies
 install_nvim
 install_nerd_fonts
 

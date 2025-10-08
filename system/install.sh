@@ -18,6 +18,7 @@ if command -v apt-get >/dev/null 2>&1; then
     zlib1g-dev \
     wget \
     curl \
+    xclip \
     xz-utils
 elif command -v yum >/dev/null 2>&1; then
   # RHEL / CentOS / Amazon Linux
@@ -32,6 +33,7 @@ elif command -v yum >/dev/null 2>&1; then
     zlib-devel \
     wget \
     curl \
+    xclip \
     xz
 else
   echo "Error: neither apt-get nor yum is available on this system." >&2
