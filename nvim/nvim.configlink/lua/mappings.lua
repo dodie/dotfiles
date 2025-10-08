@@ -19,16 +19,23 @@ vim.cmd "command! WQ wq"
 vim.cmd "command! Qa qa"
 vim.cmd "command! QA qa"
 
--- Navigation
+-- Search stuff
 -- :Telescope  - a nice "find anything" list, including git_branches and git_commits
 map("n", "<C-p>", ":Telescope find_files <CR>", { desc = "Find files" })
 map("n", "<M-p>", ":Telescope live_grep <CR>", { desc = "Find in files" })
+map("n", "<C-M-p>", ":Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Find in symbols (workspace)" })
 map(
   "n",
   "<leader>*",
   ":lua require('telescope.builtin').grep_string({ search = '<C-R><C-W>' })<CR>",
   { desc = "Find word under cursor in files" }
 )
+
+-- Navigation
+map("n", "^", ":Telescope jumplist<CR>", { desc = "Go to jumplist" })
+map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
+map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Go to references" })
+map("n", "gi", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Go to info / documentation" })
 
 -- Tree
 -- g? in tree - help
