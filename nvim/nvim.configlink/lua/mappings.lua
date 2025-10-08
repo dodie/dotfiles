@@ -16,6 +16,8 @@ vim.cmd "cnoreabbrev W w"
 vim.cmd "cnoreabbrev Q q"
 vim.cmd "command! Wq wq"
 vim.cmd "command! WQ wq"
+vim.cmd "command! Qa qa"
+vim.cmd "command! QA qa"
 
 -- Navigation
 -- :Telescope  - a nice "find anything" list, including git_branches and git_commits
