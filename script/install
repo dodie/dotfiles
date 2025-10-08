@@ -42,6 +42,7 @@ echo
 shopt -s nullglob
 for dir in */ ; do
 	[[ "$dir" == "script/" ]] && continue
+	[[ "$dir" == "bin/" ]] && continue
 	[[ ! -d "$dir" ]] && continue
 
 	topic="${dir%/}"
