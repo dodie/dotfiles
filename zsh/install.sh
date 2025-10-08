@@ -13,17 +13,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# Provide ag - deprecated, use rg instead - TODO remove this section
-# git clone https://github.com/ggreer/the_silver_searcher.git ~/.the_silver_searcher
-# (
-# yum -y install pcre-devel
-# cd .the_silver_searcher
-# ./build.sh
-# ln -s ~/.the_silver_searcher/ag ~/bin/ag
-# )
-
 # Install rg
-# TODO: align .zshrc so rg is used
 (
 cd ~/Programs
 curl -L https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz -o ripgrep.tar.gz
