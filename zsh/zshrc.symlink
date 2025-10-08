@@ -131,4 +131,6 @@ DOCKERFILE
 }
 
 # CTRL+Backspace: delete word
+# Hint: run `showkey -a` to see what to bind.
+# https://stackoverflow.com/questions/21252419/in-zsh-how-do-you-bind-ctrlbackspace-to-delete-the-previous-word
 bindkey '^H' backward-kill-word
