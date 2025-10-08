@@ -168,6 +168,8 @@ prepare_directories () {
   mkdir -p ~/workspace
   mkdir -p ~/workspace_oss
   mkdir -p ~/Programs
+  mkdir -p ~/Documents
+  mkdir -p ~/Downloads
   mkdir -p ~/temp
   mkdir -p ~/bin
 }
