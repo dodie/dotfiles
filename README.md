@@ -3,7 +3,7 @@ My dotfiles.
 Based on the structure and setup scripts created by
 Zach Holman: https://github.com/holman/dotfiles
 
-## install
+## Install
 
 ```sh
 git clone https://github.com/dodie/dotfiles.git ~/.dotfiles
@@ -14,7 +14,18 @@ script/install
 # Avoid overwriting existing dotfiles
 ```
 
-## components
+Consider manually migrating to the new environment if necessary:
+- Browser bookmarks
+- .zsh_history
+- SSH keys (or generate new ones as needed, set up proper permissions with `chmod go-rwx *`)
+- Any "temporary" stuff that might be needed:
+  - Documents
+  - Downloads
+  - Programs
+
+See extra steps for Windows in [windows-customizations.md]()
+
+## Components
 
 There's a few special files in the hierarchy.
 
@@ -32,7 +43,7 @@ There's a few special files in the hierarchy.
   symlinked in when you run `script/bootstrap`.
 - **topic/\*.configlink**: Similar to .symlinks, but these files will be linked into $HOME/.config
 
-## notable archives
+## Notable archives
 
 Check git history for (outdated) config for the following tools:
 

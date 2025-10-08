@@ -4,7 +4,7 @@
 
 - Go to "Time & language > Language & region > Options" in Settings. Keep the English language, but change the Keyboard config to Hungarian. This way the language of Windows will be still English, but typing will be on a Hungarian layout.
 - Go to "Time and Language > Typing > Advanced Keyboard Settings" in Settings. Click 'Input Language Hotkeys'. Disable hotkeys for language selection.
-  - **TODO** It only disables Alt+Shift, not Win+Space. 
+  - **TODO** It only disables Alt+Shift, not Win+Space.
 - Right-click on the taskbar and select "Taskbar settings" to go to "Personalization > Taskbar" in Settings
   - Uncheck "Task view"
   - Uncheck "Widgets"
@@ -30,3 +30,27 @@ Install:
     - Remap Caps Lock to Left Shift
     - Remap Lenovo's annoying Print Screen button which is right next to Right Alt to Right Alt.
 
+
+# WSL and Windows Terminal
+
+- Make Ubuntu the default terminal profile in Windows Terminal
+  - Settings > Startup > Default Profile
+- Install nerdfont
+  - Download https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+  - Extract, find JetBrainsMonoNL Nerd Font, right click, install.
+  - Restart Windows Terminal.
+  - Settings > [profile] > Appearance > Font Face > (select Nerd Font)
+- Modify terminal color profile
+  - Settings > [profile] > Appearance > Color Scheme > (select Dark+)
+- Disable Bell sound
+  - Settings > [profile] > Advanced > Bell notification style > (uncheck)
+- Setup shortcuts
+  - Settings > Actions
+    - Move tab backwards: ctrl+shift+left
+    - Move tab forwards: ctrl+shift+right
+    - Previous tab: shift+left
+    - Next tab: shift+right
+    - Clear buffer: ctrl+shift+k
+  - Note: the following works by default, no need to change:
+    - Increase font size, Decrease font size, Select all, Toggle menu (there's no menu)
+    - For the gnome-terminal settings, see gnome-terminal/install.sh
