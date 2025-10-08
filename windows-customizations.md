@@ -51,6 +51,7 @@ Install:
     - Previous tab: shift+left
     - Next tab: shift+right
     - Clear buffer: ctrl+shift+k
+    - Close tab: ctrl+w
   - Note: the following works by default, no need to change:
     - Increase font size, Decrease font size, Select all, Toggle menu (there's no menu)
     - For the gnome-terminal settings, see gnome-terminal/install.sh
