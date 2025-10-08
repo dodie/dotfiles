@@ -129,3 +129,6 @@ DOCKERFILE
     "$image" \
     mergiraf "$@"
 }
+
+# CTRL+Backspace: delete word
+bindkey '^H' backward-kill-word
