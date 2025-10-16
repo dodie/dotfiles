@@ -18,6 +18,9 @@ vim.cmd "command! Wq wq"
 vim.cmd "command! WQ wq"
 vim.cmd "command! Qa qa"
 vim.cmd "command! QA qa"
+vim.cmd "command! Wqa wqa"
+vim.cmd "command! WQa wqa"
+vim.cmd "command! WQA wqa"
 
 -- Search stuff
 -- :Telescope  - a nice "find anything" list, including git_branches and git_commits
