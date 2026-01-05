@@ -14,6 +14,7 @@
   - Set "Choose your mode" to "Custom", set "app mode" to "light" and "windows mode" to "dark" to get a light theme with dark taskbar.
 - Right click your Desktop and select Personalize, go to Background, set Personalize your background to "Picture".
 - Increase mouse cursor size a bit. Select the Start button, then select Settings > Ease of Access > Cursor & pointer , and choose the options that work best for you.
+- Go to "Accessibility > Color filters". Enable "Keyboard shortcut for color filters", and set the default color filter to Grayscale.
 
 
 ## Tools
