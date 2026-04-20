@@ -15,6 +15,7 @@
 - Right click your Desktop and select Personalize, go to Background, set Personalize your background to "Picture".
 - Increase mouse cursor size a bit. Select the Start button, then select Settings > Ease of Access > Cursor & pointer , and choose the options that work best for you.
 - Go to "Accessibility > Color filters". Enable "Keyboard shortcut for color filters", and set the default color filter to Grayscale.
+- Go to "Settings" > "System" > "Notifications", go to "Additional settings" then disable "Suggest ways to get the most out of Windows" and "Get tips"
 
 
 ## Tools
