@@ -9,7 +9,9 @@
   - Uncheck "Task view"
   - Uncheck "Widgets"
   - Switch "Search" to "Hide"
-  - In "Taskbar behaviors" switch "Taskbar alignment" to "Left" and uncheck "Show my taskbar on all displays"
+  - In "Taskbar behaviors"
+    - Switch "Taskbar alignment" to "Left" and uncheck "Show my taskbar on all displays"
+    - Uncheck "Share any windows from my taskbar"
 - Go to "Personalization > Colors" in Settings
   - Set "Choose your mode" to "Custom", set "app mode" to "light" and "windows mode" to "dark" to get a light theme with dark taskbar.
 - Right click your Desktop and select Personalize, go to Background, set Personalize your background to "Picture".
